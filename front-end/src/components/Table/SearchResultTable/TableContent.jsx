@@ -1,15 +1,14 @@
-import { useState } from "react";
-
 /* eslint-disable react/prop-types */
-const TableContent = ({ title, stock, price, isButton, isInput }) => {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-  const handleAddButtonClick = () => {
-    console.log(inputValue);
-  };
+const TableContent = ({
+  title,
+  stock,
+  price,
+  isButton,
+  isInput,
+  inputValue,
+  handleInputChange,
+  handleAddButtonClick,
+}) => {
   return (
     <tr>
       <td className="w-[54%] border-2 border-white text-left p-3 uppercase">

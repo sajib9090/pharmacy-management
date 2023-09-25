@@ -7,8 +7,12 @@ const FilterProductContext = createContext();
 export const FilterContextProvider = ({ children }) => {
   const { products, refetchProducts } = useProductContext();
   //   search value
-
   const [searchValue, setSearchValue] = useState("");
+
+  //this function for clear filter when product add in cart
+  const addToDone = () => {
+    setSearchValue("");
+  };
 
   // get search value function
   const handleInputChange = (e) => {
@@ -33,12 +37,13 @@ export const FilterContextProvider = ({ children }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   useEffect(() => {
     filterProduct(products, searchValue);
-  }, [searchValue, setSearchValue, products]);
+  }, [searchValue, products]);
   return (
     <FilterProductContext.Provider
       value={{
         handleInputChange,
         filteredProducts,
+        addToDone,
       }}
     >
       {children}

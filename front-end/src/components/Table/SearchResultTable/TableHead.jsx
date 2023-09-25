@@ -1,7 +1,22 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import TableContent from "./TableContent";
+import { useSellCartContext } from "../../../GlobalContext/SellCartContext";
+import { useFilterProductContext } from "../../../GlobalContext/FilterContext";
 
 const TableHead = ({ filteredProducts }) => {
+  const { handleAddToBill } = useSellCartContext();
+  const { addToDone } = useFilterProductContext();
+  const [inputValue, setInputValue] = useState(1);
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+  const handleAddButtonClick = (item, quantity) => {
+    handleAddToBill(item, quantity);
+    addToDone();
+  };
+
   return (
     <>
       {filteredProducts?.length > 0 ? (
@@ -33,6 +48,12 @@ const TableHead = ({ filteredProducts }) => {
                   price={item?.price}
                   isButton={true}
                   isInput={true}
+                  handleInputChange={handleInputChange}
+                  setInputValue={setInputValue}
+                  inputValue={inputValue}
+                  handleAddButtonClick={() =>
+                    handleAddButtonClick(item, inputValue)
+                  }
                 />
               ))}
             </tbody>
