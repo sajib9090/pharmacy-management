@@ -3,8 +3,6 @@ const TableContent = ({
   title,
   stock,
   price,
-  isButton,
-  isInput,
   inputValue,
   handleInputChange,
   handleAddButtonClick,
@@ -17,28 +15,20 @@ const TableContent = ({
       <td className="w-[12%] border-2 border-white text-center p-3">{stock}</td>
       <td className="w-[12%] border-2 border-white text-center p-3">{price}</td>
       <td className="w-[12%] border-2 border-white text-center p-3">
-        {isInput ? (
-          <input
-            value={inputValue}
-            onChange={handleInputChange}
-            type="number"
-            className="w-[60px] py-1 rounded"
-          />
-        ) : (
-          ""
-        )}
+        <input
+          value={inputValue}
+          onChange={handleInputChange}
+          type="number"
+          className="w-[60px] py-1 rounded"
+        />
       </td>
       <td className="w-[10%] border-2 border-white text-center p-3">
-        {isButton ? (
-          <button
-            onClick={handleAddButtonClick}
-            className="bg-blue-400 px-2 py-1 text-white rounded hover:bg-opacity-80 duration-500"
-          >
-            Add
-          </button>
-        ) : (
-          ""
-        )}
+        <button
+          onClick={handleAddButtonClick}
+          className="bg-blue-400 px-2 py-1 text-white rounded hover:bg-opacity-80 duration-500"
+        >
+          Add
+        </button>
       </td>
     </tr>
   );

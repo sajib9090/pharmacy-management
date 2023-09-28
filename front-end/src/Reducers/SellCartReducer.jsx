@@ -18,7 +18,7 @@ const SellCartReducer = (state, action) => {
       let cartProduct = {
         _id: product._id,
         product_id: product._id,
-        product_match_id: product.title + 786,
+        product_match_id: product.product_id,
         product_name: product.title,
         product_price_per_unit: parseFloat(product.price),
         product_quantity: parseInt(quantity),
@@ -44,7 +44,7 @@ const SellCartReducer = (state, action) => {
   }
   // remove all data from cart
   if (action.type === "REMOVE_SOLD_CART") {
-    localStorage.removeItem("bill-cart");
+    localStorage.removeItem("sell-cart");
     return {
       carts: [],
     };

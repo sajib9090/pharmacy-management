@@ -14,3 +14,11 @@ tbody tr:nth-child(odd) {
 tbody tr:nth-child(even) {
   background-color: rgb(232, 239, 248);
 }
+
+.active-link {
+  color: red;
+}
+
+.sidebar-transition {
+  transition: transform 1s ease; /* Adjust the duration as needed */
+}

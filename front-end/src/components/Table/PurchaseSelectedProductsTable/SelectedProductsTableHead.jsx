@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import SelectedProductsTableContent from "./SelectedProductsTableContent";
 
-const SelectedProductsTableHead = ({ carts, handleRemove }) => {
+const SelectedProductsTableHead = ({ handleRemove, purchaseCarts }) => {
   return (
     <>
-      {carts?.length > 0 ? (
+      {purchaseCarts?.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="border-collapse w-full border border-gray-200">
             <thead>
@@ -23,12 +23,14 @@ const SelectedProductsTableHead = ({ carts, handleRemove }) => {
               </tr>
             </thead>
             <tbody>
-              {carts?.map((item, index) => (
+              {purchaseCarts?.map((item, index) => (
                 <SelectedProductsTableContent
                   key={index}
                   serial={index + 1}
                   title={item?.product_name}
-                  price={item?.product_quantity * item?.product_price_per_unit}
+                  price={(
+                    item?.product_quantity * item?.product_price_per_unit
+                  ).toFixed(2)}
                   quantity={item?.product_quantity}
                   singlePrice={item?.product_price_per_unit}
                   handleRemove={() => handleRemove(item)}
@@ -37,9 +39,7 @@ const SelectedProductsTableHead = ({ carts, handleRemove }) => {
             </tbody>
           </table>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
     </>
   );
 };

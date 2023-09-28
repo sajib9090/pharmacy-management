@@ -1,22 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import TableContent from "./TableContent";
-import { useSellCartContext } from "../../../GlobalContext/SellCartContext";
 import { useFilterProductContext } from "../../../GlobalContext/FilterContext";
+import { usePurchaseCartContext } from "../../../GlobalContext/PurchaseCartContext";
+import PurchaseTableContent from "./PurchaseTableContent";
 
-const TableHead = ({ filteredProducts }) => {
-  const { handleAddToBill } = useSellCartContext();
+const PurchaseTableHead = ({ filteredProducts }) => {
+  const { addPurchasedProducts } = usePurchaseCartContext();
   const { addToDone } = useFilterProductContext();
   const [inputValue, setInputValue] = useState(1);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
-  const handleAddButtonClick = (item, quantity) => {
-    handleAddToBill(item, quantity);
+  const handlePurchaseCart = (item, quantity) => {
+    addPurchasedProducts(item, quantity);
     addToDone();
+    setInputValue(1);
   };
-
   return (
     <>
       {filteredProducts?.length > 0 ? (
@@ -41,18 +41,16 @@ const TableHead = ({ filteredProducts }) => {
             </thead>
             <tbody>
               {filteredProducts?.map((item) => (
-                <TableContent
+                <PurchaseTableContent
                   key={item?._id}
                   title={item?.title}
                   stock={item?.stock}
                   price={item?.price}
-                  isButton={true}
-                  isInput={true}
                   handleInputChange={handleInputChange}
                   setInputValue={setInputValue}
                   inputValue={inputValue}
                   handleAddButtonClick={() =>
-                    handleAddButtonClick(item, inputValue)
+                    handlePurchaseCart(item, inputValue)
                   }
                 />
               ))}
@@ -66,4 +64,4 @@ const TableHead = ({ filteredProducts }) => {
   );
 };
 
-export default TableHead;
+export default PurchaseTableHead;
