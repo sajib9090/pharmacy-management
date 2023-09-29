@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home/Home";
 import Loader from "../components/Loader/Loader";
 import PrivateRoute from "./PrivateRoute";
 import Login from "../Pages/Login/Login";
+import AdminRoute from "./AdminRoute";
 const Sell = lazy(() => import("../Pages/Sell/Sell"));
 const Dashboard = lazy(() => import("../Pages/Dashboard/Dashboard"));
 const DashboardLayout = lazy(() => import("../Layout/DashboardLayout"));
@@ -116,7 +117,9 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<Loader />}>
         <PrivateRoute>
-          <DashboardLayout />
+          <AdminRoute>
+            <DashboardLayout />
+          </AdminRoute>
         </PrivateRoute>
       </Suspense>
     ),
